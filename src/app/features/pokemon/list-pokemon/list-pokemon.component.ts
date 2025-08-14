@@ -4,6 +4,7 @@ import { BorderCardDirective } from '../../../shared/directives/border-card.dire
 import { PokemonTypeColorPipe } from '../../../shared/pipes/pokemon-type-color.pipe';
 import { Pokemon } from '../../../datas/models/pokemon';
 import { POKEMONS } from '../../../datas/mocks/mock-pokemon-list';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -14,6 +15,12 @@ import { POKEMONS } from '../../../datas/mocks/mock-pokemon-list';
 export class ListPokemonComponent {
   pokemonList: Pokemon[] = POKEMONS;
   pokemonSelected: Pokemon | undefined;
+
+  constructor(private router: Router) { }
+
+  goToPokemon(pokemon: Pokemon) {
+    this.router.navigate(['/pokemon', pokemon.id]);
+  }
 
   selectPokemon(pokemonId: string) {
     const pokemon: Pokemon | undefined = this.pokemonList.find(pokemon => pokemon.id == +pokemonId)

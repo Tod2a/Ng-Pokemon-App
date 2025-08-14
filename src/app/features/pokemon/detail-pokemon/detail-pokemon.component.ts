@@ -3,6 +3,7 @@ import { Pokemon } from '../../../datas/models/pokemon';
 import { POKEMONS } from '../../../datas/mocks/mock-pokemon-list';
 import { CommonModule } from '@angular/common';
 import { PokemonTypeColorPipe } from '../../../shared/pipes/pokemon-type-color.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail-pokemon',
@@ -17,7 +18,7 @@ export class DetailPokemonComponent implements OnInit {
   pokemonList: Pokemon[];
   pokemon: Pokemon|undefined;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.pokemonList = POKEMONS;
@@ -26,6 +27,10 @@ export class DetailPokemonComponent implements OnInit {
       this.pokemon = this.pokemonList.find(pokemon => pokemon.id == +this.pokemonId)
     } 
 
+  }
+
+  public goToPokemonList() {
+    this.router.navigate(['/pokemon']);
   }
 
 }
