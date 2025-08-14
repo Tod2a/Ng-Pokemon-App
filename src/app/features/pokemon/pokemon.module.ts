@@ -5,7 +5,7 @@ import { DetailPokemonComponent } from './detail-pokemon/detail-pokemon.componen
 import { PokemonTypeColorPipe } from '../../shared/pipes/pokemon-type-color.pipe';
 import { SHARED_IMPORTS } from '../../shared/imports';
 import { BorderCardDirective } from '../../shared/directives/border-card.directive';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 export const pokemonRoutes: Routes = [
     { path: 'pokemon', component: ListPokemonComponent },
@@ -18,7 +18,6 @@ export const pokemonRoutes: Routes = [
     DetailPokemonComponent
   ],
   imports: [
-    CommonModule,
     PokemonTypeColorPipe,
     SHARED_IMPORTS,
     BorderCardDirective
