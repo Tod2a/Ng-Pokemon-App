@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 
 export const SHARED_IMPORTS = [
   CommonModule,
   FormsModule,
-  RouterModule
+  RouterModule,
+  RouterLink
 ];

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { SHARED_IMPORTS } from '../../../shared/imports';
 
 @Component({
   selector: 'app-page-not-found',
   standalone: true,
-  imports: [RouterLink],
+  imports: [SHARED_IMPORTS],
   templateUrl: './page-not-found.component.html',
   styles: ``
 })
