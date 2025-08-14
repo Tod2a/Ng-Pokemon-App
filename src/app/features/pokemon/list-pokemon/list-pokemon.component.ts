@@ -1,15 +1,10 @@
 import { Component } from '@angular/core';
-import { SHARED_IMPORTS } from '../../../shared/imports';
-import { BorderCardDirective } from '../../../shared/directives/border-card.directive';
-import { PokemonTypeColorPipe } from '../../../shared/pipes/pokemon-type-color.pipe';
 import { Pokemon } from '../../../datas/models/pokemon';
 import { POKEMONS } from '../../../datas/mocks/mock-pokemon-list';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-pokemon',
-  standalone: true,
-  imports: [SHARED_IMPORTS, BorderCardDirective, PokemonTypeColorPipe],
   templateUrl: './list-pokemon.component.html',
 })
 export class ListPokemonComponent {

@@ -1,14 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Pokemon } from '../../../datas/models/pokemon';
 import { POKEMONS } from '../../../datas/mocks/mock-pokemon-list';
-import { CommonModule } from '@angular/common';
-import { PokemonTypeColorPipe } from '../../../shared/pipes/pokemon-type-color.pipe';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail-pokemon',
-  standalone: true,
-  imports: [CommonModule, PokemonTypeColorPipe],
   templateUrl: './detail-pokemon.component.html'
 })
 export class DetailPokemonComponent implements OnInit {
