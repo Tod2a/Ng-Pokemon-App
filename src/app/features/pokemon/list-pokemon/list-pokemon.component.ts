@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SHARED_IMPORTS } from '../../../shared/imports';
 import { BorderCardDirective } from '../../../shared/directives/border-card.directive';
 import { PokemonTypeColorPipe } from '../../../shared/pipes/pokemon-type-color.pipe';
@@ -10,15 +10,10 @@ import { POKEMONS } from '../../../datas/mocks/mock-pokemon-list';
   standalone: true,
   imports: [SHARED_IMPORTS, BorderCardDirective, PokemonTypeColorPipe],
   templateUrl: './list-pokemon.component.html',
-  styles: ``
 })
-export class ListPokemonComponent implements OnInit {
+export class ListPokemonComponent {
   pokemonList: Pokemon[] = POKEMONS;
   pokemonSelected: Pokemon | undefined;
-
-  ngOnInit(): void {
-    console.table(this.pokemonList);
-  }
 
   selectPokemon(pokemonId: string) {
     const pokemon: Pokemon | undefined = this.pokemonList.find(pokemon => pokemon.id == +pokemonId)
