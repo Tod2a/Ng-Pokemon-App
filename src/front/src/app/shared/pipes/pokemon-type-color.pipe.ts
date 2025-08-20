@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { PokemonType } from '../../datas/enums/pokemon-types.enum';
 
 @Pipe({
   name: 'pokemonTypeColor',
@@ -6,50 +7,34 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PokemonTypeColorPipe implements PipeTransform {
 
-   transform(type: string): string {
-  
-    let color: string;
-  
-    switch (type) {
-      case 'Feu':
-        color = 'red lighten-1';
-        break;
-      case 'Eau':
-        color = 'blue lighten-1';
-        break;
-      case 'Plante':
-        color = 'green lighten-1';
-        break;
-      case 'Insecte':
-        color = 'brown lighten-1';
-        break;
-      case 'Normal':
-        color = 'grey lighten-3';
-        break;
-      case 'Vol':
-        color = 'blue lighten-3';
-        break;
-      case 'Poison':
-        color = 'deep-purple accent-1';
-        break;
-      case 'Fée':
-        color = 'pink lighten-4';
-        break;
-      case 'Psy':
-        color = 'deep-purple darken-2';
-        break;
-      case 'Electrik':
-        color = 'lime accent-1';
-        break;
-      case 'Combat':
-        color = 'deep-orange';
-        break;
-      default:
-        color = 'grey';
-        break;
-    }
-  
-    return 'chip ' + color;
-  
+  private readonly typeColors: Record<PokemonType, string> = {
+    [PokemonType.Feu]: 'red lighten-1',
+    [PokemonType.Eau]: 'blue lighten-1',
+    [PokemonType.Plante]: 'green lighten-1',
+    [PokemonType.Insecte]: 'green lighten-3',
+    [PokemonType.Normal]: 'grey lighten-3',
+    [PokemonType.Vol]: 'blue lighten-3',
+    [PokemonType.Poison]: 'deep-purple accent-1',
+    [PokemonType.Fée]: 'pink lighten-4',
+    [PokemonType.Psy]: 'deep-purple darken-2',
+    [PokemonType.Électrik]: 'lime accent-1',
+    [PokemonType.Combat]: 'deep-orange',
+    [PokemonType.Acier]: 'grey',
+    [PokemonType.Dragon]: 'purple darken-1',
+    [PokemonType.Glace]: 'cyan lighten-4',
+    [PokemonType.Roche]: 'brown darken-2',
+    [PokemonType.Sol]: 'amber darken-2',
+    [PokemonType.Spectre]: 'indigo darken-3',
+    [PokemonType.Ténèbres]: 'blue-grey darken-3'
+  };
+
+   transform(type: PokemonType | string): string {
+    const normalizedType = type in PokemonType ? type as PokemonType : null;
+
+    const colorClass = normalizedType && this.typeColors[normalizedType]
+      ? this.typeColors[normalizedType]
+      : 'grey';
+
+    return `chip ${colorClass}`;
   }
 }
