@@ -1,31 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../../../datas/models/pokemon';
-import { POKEMONS } from '../../../datas/mocks/mock-pokemon-list';
 import { Router } from '@angular/router';
+import { PokemonService } from '../../../core/services/pokemon.service';
 
 @Component({
   selector: 'app-list-pokemon',
   templateUrl: './list-pokemon.component.html',
 })
-export class ListPokemonComponent {
-  pokemonList: Pokemon[] = POKEMONS;
-  pokemonSelected: Pokemon | undefined;
+export class ListPokemonComponent implements OnInit {
+  pokemonList: Pokemon[];
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private pokemonService: PokemonService
+  ) { }
+
+  ngOnInit() {
+    this.pokemonList = this.pokemonService.getPokemonList();
+  }
 
   goToPokemon(pokemon: Pokemon) {
     this.router.navigate(['/pokemon', pokemon.id]);
-  }
-
-  selectPokemon(pokemonId: string) {
-    const pokemon: Pokemon | undefined = this.pokemonList.find(pokemon => pokemon.id == +pokemonId)
-
-    if (pokemon) {
-      console.log(`Vous avez demandé le pokémon ${pokemon.name}`);
-      this.pokemonSelected = pokemon;
-    } else {
-      console.log(`Vous avez demandé un pokémon qui n'existe pas`);
-      this.pokemonSelected = pokemon;
-    }
   }
 }

@@ -1,3 +1,4 @@
+import { PokemonType } from '../enums/pokemon-types.enum';
 import { Pokemon } from '../models/pokemon';
   
 export const POKEMONS: Pokemon[] = [
@@ -7,7 +8,7 @@ export const POKEMONS: Pokemon[] = [
         hp: 25,
         cp: 5,
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png",
-        types: ["Plante", "Poison"],
+        types: [PokemonType.Plante, PokemonType.Poison],
         created: new Date()
     },
     {
@@ -16,7 +17,7 @@ export const POKEMONS: Pokemon[] = [
         hp: 28,
         cp: 6,
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png",
-        types: ["Feu"],
+        types: [PokemonType.Feu],
         created: new Date()
     },
     {
@@ -25,7 +26,7 @@ export const POKEMONS: Pokemon[] = [
         hp: 21,
         cp: 4,
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png",
-        types: ["Eau"],
+        types: [PokemonType.Eau],
         created: new Date()
     },
     {
@@ -34,7 +35,7 @@ export const POKEMONS: Pokemon[] = [
         hp: 16,
         cp: 2,
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/013.png",
-        types: ["Insecte", "Poison"],
+        types: [PokemonType.Insecte, PokemonType.Poison],
         created: new Date()
     },
     {
@@ -43,7 +44,7 @@ export const POKEMONS: Pokemon[] = [
         hp: 30,
         cp: 7,
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/016.png",
-        types: ["Normal", "Vol"],
+        types: [PokemonType.Normal, PokemonType.Vol],
         created: new Date()
     },
     {
@@ -52,7 +53,7 @@ export const POKEMONS: Pokemon[] = [
         hp: 18,
         cp: 6,
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/019.png",
-        types: ["Normal"],
+        types: [PokemonType.Normal],
         created: new Date()
     },
     {
@@ -61,7 +62,7 @@ export const POKEMONS: Pokemon[] = [
         hp: 14,
         cp: 5,
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/021.png",
-        types: ["Normal", "Vol"],
+        types: [PokemonType.Normal, PokemonType.Vol],
         created: new Date()
     },
     {
@@ -70,7 +71,7 @@ export const POKEMONS: Pokemon[] = [
         hp: 16,
         cp: 4,
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/023.png",
-        types: ["Poison"],
+        types: [PokemonType.Poison],
         created: new Date()
     },
     {
@@ -79,7 +80,7 @@ export const POKEMONS: Pokemon[] = [
         hp: 21,
         cp: 7,
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/025.png",
-        types: ["Electrik"],
+        types: [PokemonType.Électrik],
         created: new Date()
     },
     {
@@ -88,7 +89,7 @@ export const POKEMONS: Pokemon[] = [
         hp: 19,
         cp: 3,
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/027.png",
-        types: ["Normal"],
+        types: [PokemonType.Normal],
         created: new Date()
     },
     {
@@ -97,7 +98,7 @@ export const POKEMONS: Pokemon[] = [
         hp: 25,
         cp: 5,
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/035.png",
-        types: ["Fée"],
+        types: [PokemonType.Fée],
         created: new Date()
     },
     {
@@ -106,7 +107,7 @@ export const POKEMONS: Pokemon[] = [
         hp: 17,
         cp: 8,
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/037.png",
-        types: ["Feu"],
+        types: [PokemonType.Feu],
         created: new Date()
     }
 ];
