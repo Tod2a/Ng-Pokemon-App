@@ -28,7 +28,7 @@ export class PokemonTypeColorPipe implements PipeTransform {
     [PokemonType.Ténèbres]: 'blue-grey darken-3'
   };
 
-   transform(type: PokemonType | string): string {
+  transform(type: PokemonType | string): string {
     const normalizedType = type in PokemonType ? type as PokemonType : null;
 
     const colorClass = normalizedType && this.typeColors[normalizedType]

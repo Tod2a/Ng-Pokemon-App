@@ -6,5 +6,6 @@ export const SHARED_IMPORTS = [
   CommonModule,
   FormsModule,
   RouterModule,
-  RouterLink
+  RouterLink,
+  FormsModule
 ];
