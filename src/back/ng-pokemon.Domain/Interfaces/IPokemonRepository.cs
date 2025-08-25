@@ -19,5 +19,5 @@ public interface IPokemonRepository
     /// </summary>
     /// <param name="id">Pokemon id.</param>
     /// <returns>Pokemon or null.</returns>
-    Task<Pokemon> GetByIdAsync(int id);
+    Task<Pokemon?> GetByIdAsync(int id);
 }
