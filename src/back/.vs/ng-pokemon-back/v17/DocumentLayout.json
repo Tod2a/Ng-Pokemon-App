@@ -1,12 +1,71 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\dev\\ng-pokemon-app\\src\\back\\ng-pokemon-back\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\dev\\ng-pokemon-app\\src\\back\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{240CB66C-A102-4D68-99BF-C514380D73CA}|ng-pokemon.Domain\\ng-pokemon.Domain.csproj|c:\\dev\\ng-pokemon-app\\src\\back\\ng-pokemon.domain\\entities\\pokemon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{240CB66C-A102-4D68-99BF-C514380D73CA}|ng-pokemon.Domain\\ng-pokemon.Domain.csproj|solutionrelative:ng-pokemon.domain\\entities\\pokemon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{240CB66C-A102-4D68-99BF-C514380D73CA}|ng-pokemon.Domain\\ng-pokemon.Domain.csproj|c:\\dev\\ng-pokemon-app\\src\\back\\ng-pokemon.domain\\enums\\pokemontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{240CB66C-A102-4D68-99BF-C514380D73CA}|ng-pokemon.Domain\\ng-pokemon.Domain.csproj|solutionrelative:ng-pokemon.domain\\enums\\pokemontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{240CB66C-A102-4D68-99BF-C514380D73CA}|ng-pokemon.Domain\\ng-pokemon.Domain.csproj|c:\\dev\\ng-pokemon-app\\src\\back\\ng-pokemon.domain\\ng-pokemon.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{240CB66C-A102-4D68-99BF-C514380D73CA}|ng-pokemon.Domain\\ng-pokemon.Domain.csproj|solutionrelative:ng-pokemon.domain\\ng-pokemon.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Pokemon.cs",
+              "DocumentMoniker": "C:\\dev\\ng-pokemon-app\\src\\back\\ng-pokemon.Domain\\entities\\Pokemon.cs",
+              "RelativeDocumentMoniker": "ng-pokemon.Domain\\entities\\Pokemon.cs",
+              "ToolTip": "C:\\dev\\ng-pokemon-app\\src\\back\\ng-pokemon.Domain\\entities\\Pokemon.cs",
+              "RelativeToolTip": "ng-pokemon.Domain\\entities\\Pokemon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T08:54:46.976Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PokemonType.cs",
+              "DocumentMoniker": "C:\\dev\\ng-pokemon-app\\src\\back\\ng-pokemon.Domain\\enums\\PokemonType.cs",
+              "RelativeDocumentMoniker": "ng-pokemon.Domain\\enums\\PokemonType.cs",
+              "ToolTip": "C:\\dev\\ng-pokemon-app\\src\\back\\ng-pokemon.Domain\\enums\\PokemonType.cs",
+              "RelativeToolTip": "ng-pokemon.Domain\\enums\\PokemonType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T08:46:07.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ng-pokemon.Domain",
+              "DocumentMoniker": "C:\\dev\\ng-pokemon-app\\src\\back\\ng-pokemon.Domain\\ng-pokemon.Domain.csproj",
+              "RelativeDocumentMoniker": "ng-pokemon.Domain\\ng-pokemon.Domain.csproj",
+              "ToolTip": "C:\\dev\\ng-pokemon-app\\src\\back\\ng-pokemon.Domain\\ng-pokemon.Domain.csproj",
+              "RelativeToolTip": "ng-pokemon.Domain\\ng-pokemon.Domain.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-25T08:43:45.754Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
