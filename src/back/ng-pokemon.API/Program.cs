@@ -1,6 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using ng_pokemon.Application;
+using ng_pokemon.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
+string? connectionString = builder.Configuration.GetConnectionString("ng-pokemon");
+
+if (string.IsNullOrEmpty(connectionString))
+    throw new InvalidOperationException("Missing ng-pokemon in appsettings.json");
+
 // Add services to the container.
+builder.Services.AddInfrastructure(connectionString);
+builder.Services.AddApplication();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
