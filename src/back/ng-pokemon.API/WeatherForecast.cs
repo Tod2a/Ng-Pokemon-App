@@ -1,4 +1,4 @@
-namespace ng_pokemon_back
+namespace ng_pokemon.API
 {
     public class WeatherForecast
     {

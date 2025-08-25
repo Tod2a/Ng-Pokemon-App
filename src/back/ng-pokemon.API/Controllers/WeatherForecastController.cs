@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ng_pokemon_back.Controllers
+namespace ng_pokemon.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
