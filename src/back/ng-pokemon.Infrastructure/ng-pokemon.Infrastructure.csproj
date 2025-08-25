@@ -16,4 +16,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ng-pokemon.Domain\ng-pokemon.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
