@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using ng_pokemon.Application.DTOs;
 using ng_pokemon.Application.Interfaces;
+using ng_pokemon.Domain.Exceptions;
 using ng_pokemon.Domain.Interfaces;
 using ng_pokemon.Domain.Models;
 
@@ -10,11 +12,12 @@ namespace ng_pokemon.Application.Services;
 /// Implements the <see cref="IPokemonService"/> interface.
 /// Provides methods to manage Pokémon entities using the repository.
 /// </summary>
-public class PokemonService(IPokemonRepository pokemonRepository, IPokemonTypeRepository pokemonTypeRepository, IMapper mapper) : IPokemonService
+public class PokemonService(IPokemonRepository pokemonRepository, IPokemonTypeRepository pokemonTypeRepository, IMapper mapper, ILogger<PokemonService> logger) : IPokemonService
 {
     private readonly IPokemonRepository _pokemonRepository = pokemonRepository;
     private readonly IPokemonTypeRepository _pokemonTypeRepository = pokemonTypeRepository;
     private readonly IMapper _mapper = mapper;
+    private readonly ILogger<PokemonService> _logger = logger;
 
     /// <summary>
     /// Retrieves a paginated list of all Pokémon.
@@ -57,10 +60,8 @@ public class PokemonService(IPokemonRepository pokemonRepository, IPokemonTypeRe
     {
         if (id < 1) throw new Exception();
 
-        var pokemon = await _pokemonRepository.GetByIdAsync(id);
+        var pokemon = await _pokemonRepository.GetByIdAsync(id) ?? throw new NotFoundException("No Pokemon Found.");
 
-        if (pokemon == null) throw new Exception();
-        
         var response = _mapper.Map<PokemonDetailResponseDTO>(pokemon);
 
         return response;
@@ -77,15 +78,26 @@ public class PokemonService(IPokemonRepository pokemonRepository, IPokemonTypeRe
     {
         if (pokemon == null) return;
 
-        var newPokemon = _mapper.Map<Pokemon>(pokemon);
+        _logger.LogInformation($"Start creating a new pokemon {pokemon.Name}");
 
-        var types = await _pokemonTypeRepository.GetByIdsAsync(pokemon.TypeIds);
-
-        foreach (var type in types)
+        try
         {
-            newPokemon.PokemonTypes.Add(type);
-        }
+            var newPokemon = _mapper.Map<Pokemon>(pokemon);
 
-        await _pokemonRepository.AddAsync(newPokemon);
+            var types = await _pokemonTypeRepository.GetByIdsAsync(pokemon.TypeIds);
+
+            foreach (var type in types)
+            {
+                newPokemon.PokemonTypes.Add(type);
+            }
+
+            await _pokemonRepository.AddAsync(newPokemon);
+
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error while creating Pokemon");
+            throw;
+        }
     }
 }

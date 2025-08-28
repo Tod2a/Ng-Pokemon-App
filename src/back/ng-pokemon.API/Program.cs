@@ -1,8 +1,10 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using ng_pokemon.API.Middlewares;
 using ng_pokemon.Application;
 using ng_pokemon.Infrastructure;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 var storagePath = builder.Configuration["Storage:PhysicalPath"];
@@ -13,6 +15,9 @@ if (string.IsNullOrEmpty(connectionString))
     throw new InvalidOperationException("Missing ng-pokemon in appsettings.json");
 if (string.IsNullOrEmpty(storagePath))
     throw new InvalidOperationException("Missing storage path in appsettings.json");
+
+builder.Host.UseSerilog((context, configuration) =>
+            configuration.ReadFrom.Configuration(context.Configuration));
 
 // Add services to the container.
 builder.Services.AddInfrastructure(connectionString);
@@ -44,8 +49,12 @@ app.UseStaticFiles(new StaticFileOptions
 
 app.UseHttpsRedirection();
 
+app.UseSerilogRequestLogging();
+
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.Run();
