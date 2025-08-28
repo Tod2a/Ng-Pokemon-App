@@ -1,4 +1,5 @@
-﻿using ng_pokemon.Domain.Models;
+﻿using ng_pokemon.Application.DTOs;
+using ng_pokemon.Domain.Models;
 
 namespace ng_pokemon.Application.Interfaces;
 
@@ -28,4 +29,15 @@ public interface IPokemonService
     /// The task result contains the <see cref="Pokemon"/> if found, otherwise <c>null</c>.
     /// </returns>
     Task<Pokemon?> GetByIdAsync(int id);
+
+    /// <summary>
+    /// Adds a new Pokémon to the system.
+    /// </summary>
+    /// <param name="pokemon">
+    /// A <see cref="PokemonCreateDTO"/> containing the data required to create the Pokémon.
+    /// </param>
+    /// <returns>
+    /// A task that represents the asynchronous operation.
+    /// </returns>
+    Task AddAsync(PokemonCreateDTO pokemon);
 }

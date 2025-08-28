@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ng_pokemon.Application.DTOs;
 using ng_pokemon.Application.Interfaces;
 using ng_pokemon.Domain.Models;
 
@@ -49,5 +50,27 @@ public class PokemonController(IPokemonService pokemonService) : Controller
         }
 
         return Ok(pokemon);
+    }
+
+    /// <summary>
+    /// Creates a new Pokémon in the system.
+    /// </summary>
+    /// <param name="pokemon">
+    /// The <see cref="PokemonCreateDTO"/> containing the data required to create the Pokémon.
+    /// </param>
+    /// <returns>
+    /// Returns a <see cref="CreatedResult"/> (HTTP 201) if the Pokémon was successfully created.
+    /// Returns <see cref="BadRequestObjectResult"/> (HTTP 400) if the model validation fails.
+    /// </returns>
+    /// <response code="201">Pokémon successfully created.</response>
+    /// <response code="400">The request is invalid (validation failed).</response>
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] PokemonCreateDTO pokemon)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        await _pokemonService.AddAsync(pokemon);
+
+        return Created();
     }
 }

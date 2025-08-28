@@ -24,6 +24,7 @@ public static class ServiceRegistration
         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
         services.AddScoped<IPokemonRepository, PokemonRepository>();
+        services.AddScoped<IPokemonTypeRepository, PokemonTypeRepository>();  
 
         return services;
     }

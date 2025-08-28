@@ -42,4 +42,15 @@ public class PokemonRepository(AppDbContext context) : IPokemonRepository
     {
         return await _context.Pokemon.FirstOrDefaultAsync(p => p.Id == id);
     }
+
+    /// <summary>
+    /// Adds a new Pokémon to the database.
+    /// </summary>
+    /// <param name="pokemon">The <see cref="Pokemon"/> entity to add.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    public async Task AddAsync(Pokemon pokemon)
+    {
+        await _context.Pokemon.AddAsync(pokemon);
+        await _context.SaveChangesAsync();
+    }
 }

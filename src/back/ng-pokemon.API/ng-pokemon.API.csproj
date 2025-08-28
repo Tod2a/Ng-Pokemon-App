@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>ng_pokemon.API</RootNamespace>
     <UserSecretsId>faac02f3-31ff-4a0d-a52b-9108c4719ecd</UserSecretsId>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

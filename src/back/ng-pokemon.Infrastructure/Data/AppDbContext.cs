@@ -11,7 +11,7 @@ namespace ng_pokemon.Infrastructure.Data;
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
     public DbSet<Pokemon> Pokemon { get; set; }
-    public DbSet<PokemonType> PokemonType { get; set; }
+    public DbSet<PokemonType> PokemonTypes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

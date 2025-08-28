@@ -1,6 +1,7 @@
 ﻿using ng_pokemon.Application.Interfaces;
 using ng_pokemon.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
+using ng_pokemon.Application.Mappings;
 
 namespace ng_pokemon.Application;
 
@@ -19,6 +20,8 @@ public static class ServiceRegistration
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddScoped<IPokemonService, PokemonService>();
+
+        services.AddAutoMapper(cfg => { }, typeof(PokemonProfile).Assembly);
 
         return services;
     }

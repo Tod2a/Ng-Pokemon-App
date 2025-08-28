@@ -20,4 +20,13 @@ public interface IPokemonRepository
     /// <param name="id">Pokemon id.</param>
     /// <returns>Pokemon or null.</returns>
     Task<Pokemon?> GetByIdAsync(int id);
+
+    /// <summary>
+    /// Adds a new Pokémon to the data source.
+    /// </summary>
+    /// <param name="pokemon">The <see cref="Pokemon"/> entity to add.</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation.
+    /// </returns>
+    Task AddAsync(Pokemon pokemon);
 }

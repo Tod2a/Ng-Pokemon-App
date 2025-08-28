@@ -1,4 +1,6 @@
-﻿using ng_pokemon.Application.Interfaces;
+﻿using AutoMapper;
+using ng_pokemon.Application.DTOs;
+using ng_pokemon.Application.Interfaces;
 using ng_pokemon.Domain.Interfaces;
 using ng_pokemon.Domain.Models;
 
@@ -8,9 +10,11 @@ namespace ng_pokemon.Application.Services;
 /// Implements the <see cref="IPokemonService"/> interface.
 /// Provides methods to manage Pokémon entities using the repository.
 /// </summary>
-public class PokemonService(IPokemonRepository pokemonRepository) : IPokemonService
+public class PokemonService(IPokemonRepository pokemonRepository, IPokemonTypeRepository pokemonTypeRepository, IMapper mapper) : IPokemonService
 {
     private readonly IPokemonRepository _pokemonRepository = pokemonRepository;
+    private readonly IPokemonTypeRepository _pokemonTypeRepository = pokemonTypeRepository;
+    private readonly IMapper _mapper = mapper;
 
     /// <summary>
     /// Retrieves a paginated list of all Pokémon.
@@ -42,5 +46,28 @@ public class PokemonService(IPokemonRepository pokemonRepository) : IPokemonServ
     {
         if (id < 1) return null;
         return await _pokemonRepository.GetByIdAsync(id);
+    }
+
+    /// <summary>
+    /// Adds a new Pokémon to the system.
+    /// Maps the <see cref="PokemonCreateDTO"/> to a <see cref="Pokemon"/> entity
+    /// and saves it through the repository.
+    /// </summary>
+    /// <param name="pokemon">The DTO containing the Pokémon creation data.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    public async Task AddAsync(PokemonCreateDTO pokemon)
+    {
+        if (pokemon == null) return;
+
+        var newPokemon = _mapper.Map<Pokemon>(pokemon);
+
+        var types = await _pokemonTypeRepository.GetByIdsAsync(pokemon.TypeIds);
+
+        foreach (var type in types)
+        {
+            newPokemon.PokemonTypes.Add(type);
+        }
+
+        await _pokemonRepository.AddAsync(newPokemon);
     }
 }
