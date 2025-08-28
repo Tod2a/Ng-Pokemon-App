@@ -22,12 +22,20 @@ public class PokemonRepository(AppDbContext context) : IPokemonRepository
     /// A task that represents the asynchronous operation.
     /// The task result contains a list of <see cref="Pokemon"/>.
     /// </returns>
-    public async Task<List<Pokemon>> GetAllAsync(int pageNumber, int pageSize)
+    public async Task<(List<Pokemon>, int)> GetAllAsync(int pageNumber, int pageSize)
     {
-        return await _context.Pokemon
+        var query = _context.Pokemon
+            .Include (p => p.PokemonTypes)
+            .AsQueryable();
+
+        var totalCount = await query.CountAsync();
+
+        var items = await query
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
+
+        return (items, totalCount);
     }
 
     /// <summary>
@@ -40,7 +48,9 @@ public class PokemonRepository(AppDbContext context) : IPokemonRepository
     /// </returns>
     public async Task<Pokemon?> GetByIdAsync(int id)
     {
-        return await _context.Pokemon.FirstOrDefaultAsync(p => p.Id == id);
+        return await _context.Pokemon
+            .Include(p => p.PokemonTypes)
+            .FirstOrDefaultAsync(p => p.Id == id);
     }
 
     /// <summary>
@@ -51,6 +61,7 @@ public class PokemonRepository(AppDbContext context) : IPokemonRepository
     public async Task AddAsync(Pokemon pokemon)
     {
         await _context.Pokemon.AddAsync(pokemon);
+
         await _context.SaveChangesAsync();
     }
 }

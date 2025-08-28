@@ -18,7 +18,7 @@ public interface IPokemonService
     /// A task that represents the asynchronous operation.
     /// The task result contains a list of <see cref="Pokemon"/>.
     /// </returns>
-    Task<List<Pokemon>> GetAllAsync(int pageNumber, int pageSize);
+    Task<PagedResponse<PokemonListResponseDTO>> GetAllAsync(int pageNumber, int pageSize);
 
     /// <summary>
     /// Retrieves a Pokémon by its unique identifier.
@@ -28,7 +28,7 @@ public interface IPokemonService
     /// A task that represents the asynchronous operation.
     /// The task result contains the <see cref="Pokemon"/> if found, otherwise <c>null</c>.
     /// </returns>
-    Task<Pokemon?> GetByIdAsync(int id);
+    Task<PokemonDetailResponseDTO> GetByIdAsync(int id);
 
     /// <summary>
     /// Adds a new Pokémon to the system.

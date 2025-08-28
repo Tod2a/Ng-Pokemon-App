@@ -12,7 +12,7 @@ public interface IPokemonRepository
     /// <param name="pageNumber">Page number (1-based).</param>
     /// <param name="pageSize">Number of elements by page.</param>
     /// <returns>Paginated list of pokemon.</returns>
-    Task<List<Pokemon>> GetAllAsync(int pageNumber, int pageSize);
+    Task<(List<Pokemon>, int)> GetAllAsync(int pageNumber, int pageSize);
 
     /// <summary>
     /// Retrieve a pokemon by id.

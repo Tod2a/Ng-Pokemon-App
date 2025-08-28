@@ -26,11 +26,22 @@ public class PokemonService(IPokemonRepository pokemonRepository, IPokemonTypeRe
     /// A task that represents the asynchronous operation.
     /// The task result contains a list of <see cref="Pokemon"/>.
     /// </returns>
-    public async Task<List<Pokemon>> GetAllAsync(int pageNumber, int pageSize)
+    public async Task<PagedResponse<PokemonListResponseDTO>> GetAllAsync(int pageNumber, int pageSize)
     {
         if (pageNumber < 1) pageNumber = 1;
         if (pageSize < 1) pageSize = 10;
-        return await _pokemonRepository.GetAllAsync(pageNumber, pageSize);
+
+        var (pokemon, totalCount) = await _pokemonRepository.GetAllAsync(pageNumber, pageSize);
+
+        var dtoItems = _mapper.Map<List<PokemonListResponseDTO>>(pokemon);
+
+        return new PagedResponse<PokemonListResponseDTO>
+        {
+            Items = dtoItems,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = totalCount
+        };
     }
 
     /// <summary>
@@ -42,10 +53,17 @@ public class PokemonService(IPokemonRepository pokemonRepository, IPokemonTypeRe
     /// A task that represents the asynchronous operation.
     /// The task result contains the <see cref="Pokemon"/> if found, otherwise <c>null</c>.
     /// </returns>
-    public async Task<Pokemon?> GetByIdAsync(int id)
+    public async Task<PokemonDetailResponseDTO> GetByIdAsync(int id)
     {
-        if (id < 1) return null;
-        return await _pokemonRepository.GetByIdAsync(id);
+        if (id < 1) throw new Exception();
+
+        var pokemon = await _pokemonRepository.GetByIdAsync(id);
+
+        if (pokemon == null) throw new Exception();
+        
+        var response = _mapper.Map<PokemonDetailResponseDTO>(pokemon);
+
+        return response;
     }
 
     /// <summary>

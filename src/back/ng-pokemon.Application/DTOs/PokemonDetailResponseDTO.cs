@@ -1,9 +1,9 @@
 ﻿namespace ng_pokemon.Application.DTOs;
 
 /// <summary>
-/// Data Transfer Object used to represent a Pokémon in API responses.
+/// Data Transfer Object used to represent a detailled Pokémon in API responses.
 /// </summary>
-public class PokemonResponseDTO
+public class PokemonDetailResponseDTO
 {
     /// <summary>
     /// Gets or sets the unique identifier of the Pokémon.
@@ -45,5 +45,5 @@ public class PokemonResponseDTO
     /// Gets or sets the list of type names associated with the Pokémon.
     /// </summary>
     /// <example>["Electric"]</example>
-    public List<string> Types { get; set; } = [];
+    public List<PokemonTypeResponseDTO> Types { get; set; } = [];
 }

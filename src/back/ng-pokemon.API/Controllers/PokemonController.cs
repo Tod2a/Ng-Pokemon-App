@@ -25,10 +25,11 @@ public class PokemonController(IPokemonService pokemonService) : Controller
     /// Returns HTTP 200 OK with the list.
     /// </returns>
     [HttpGet]
-    public async Task<ActionResult<List<Pokemon>>> GetAll(int pageNumber = 1, int pageSize = 10)
+    public async Task<ActionResult<PagedResponse<PokemonListResponseDTO>>> GetAll(int pageNumber = 1, int pageSize = 10)
     {
-        var pokemons = await _pokemonService.GetAllAsync(pageNumber, pageSize);
-        return Ok(pokemons);
+        var pokemon = await _pokemonService.GetAllAsync(pageNumber, pageSize);
+
+        return Ok(pokemon);
     }
 
     /// <summary>
@@ -40,14 +41,9 @@ public class PokemonController(IPokemonService pokemonService) : Controller
     /// Returns HTTP 404 Not Found if the Pokémon does not exist.
     /// </returns>
     [HttpGet("{id}")]
-    public async Task<ActionResult<Pokemon>> GetById(int id)
+    public async Task<ActionResult<PokemonDetailResponseDTO>> GetById(int id)
     {
         var pokemon = await _pokemonService.GetByIdAsync(id);
-
-        if (pokemon == null)
-        {
-            return NotFound();
-        }
 
         return Ok(pokemon);
     }
