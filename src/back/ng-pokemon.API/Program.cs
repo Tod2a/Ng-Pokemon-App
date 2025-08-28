@@ -1,13 +1,17 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using ng_pokemon.Application;
 using ng_pokemon.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var storagePath = builder.Configuration["Storage:PhysicalPath"];
+var storageRequestPath = "/storage";
 string? connectionString = builder.Configuration.GetConnectionString("ng-pokemon");
 
 if (string.IsNullOrEmpty(connectionString))
     throw new InvalidOperationException("Missing ng-pokemon in appsettings.json");
+if (string.IsNullOrEmpty(storagePath))
+    throw new InvalidOperationException("Missing storage path in appsettings.json");
 
 // Add services to the container.
 builder.Services.AddInfrastructure(connectionString);
@@ -26,6 +30,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(storagePath),
+    RequestPath = new PathString(storageRequestPath)
+});
 
 app.UseHttpsRedirection();
 
