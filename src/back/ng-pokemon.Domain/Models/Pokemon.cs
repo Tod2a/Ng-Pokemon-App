@@ -1,5 +1,4 @@
-﻿using ng_pokemon.Domain.enums;
-
+﻿
 namespace ng_pokemon.Domain.Models;
 
 /// <summary>
@@ -35,23 +34,33 @@ public class Pokemon
     public string Img_path { get; private set; } 
 
     /// <summary>
-    /// Gets the list of types associated with the Pokémon.
-    /// A Pokémon can have one or two types.
-    /// </summary>
-    public List<PokemonType> Types { get; private set; }
-
-    /// <summary>
     /// Gets the date and time when the Pokémon entity was created.
     /// </summary>
     public DateTime Created { get; private set; }
 
+    /// <summary>
+    /// Navigation property: collection of type links associated with the Pokémon.
+    /// </summary>
+    public ICollection<PokemonType> PokemonTypes { get; set; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Pokemon"/> class with default values.
+    /// </summary>
     public Pokemon()
     {
         Name = string.Empty;
         Img_path = string.Empty;
-        Types = [];
+        PokemonTypes = [];
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Pokemon"/> class with provided values.
+    /// </summary>
+    /// <param name="id">The unique identifier of the Pokémon.</param>
+    /// <param name="name">The name of the Pokémon.</param>
+    /// <param name="hp">The hit points (HP) of the Pokémon.</param>
+    /// <param name="cp">The combat power (CP) of the Pokémon.</param>
+    /// <param name="picture">The image path of the Pokémon.</param>
     public Pokemon(int id, string name, int hp, int cp, string picture, List<PokemonType> types)
     {
         Id = id;
@@ -59,7 +68,7 @@ public class Pokemon
         Hp = hp;
         Cp = cp;
         Img_path = picture;
-        Types = types ?? [];
+        PokemonTypes = types;
         Created = DateTime.UtcNow;
     }
 }

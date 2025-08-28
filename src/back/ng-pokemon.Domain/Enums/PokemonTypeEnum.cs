@@ -1,10 +1,10 @@
-﻿namespace ng_pokemon.Domain.enums;
+﻿namespace ng_pokemon.Domain.Enums;
 
 /// <summary>
 /// Represents all possible Pokémon types.
 /// A Pokémon can have one or two types.
 /// </summary>
-public enum PokemonType
+public enum PokemonTypeEnum
 {
     Steel,
     Fighting,
